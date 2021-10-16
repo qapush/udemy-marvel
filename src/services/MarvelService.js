@@ -30,17 +30,9 @@ class MarvelService {
     }
 
     _transformCharacter = (char) => {
-        let excerpt;
-        if(char.description.length > 150){
-            excerpt = char.description.slice(0,150) + '...';
-        } else if (!char.description) {
-            excerpt = 'No data available 💔';
-        } else {
-            excerpt = char.description;
-        }
         return {
             name: char.name,
-            description: excerpt,
+            description: char.description ? `${char.description.slice(0,210)}...` : 'No data available for this character 💔',
             thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
             homepage: char.urls[0].url,
             wiki: char.urls[1].url
