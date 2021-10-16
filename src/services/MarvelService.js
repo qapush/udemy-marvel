@@ -17,14 +17,34 @@ class MarvelService {
     }
 
 
-    getAllCharacters = () => {
-        return this.getResource(`${this._apiBase}characters?limit=9&offset=210&apikey=${this._apiKey}`);
+    getAllCharacters = async () => {
+        const res = await this.getResource(`${this._apiBase}characters?limit=9&offset=210&apikey=${this._apiKey}`);
+        return res.data.results.map(this._transformCharacter);
         
     }
 
-    getCharacter = (id) => {
-        return this.getResource(`${this._apiBase}${id}?apikey=${this._apiKey}`);
+    getCharacter = async (id) => {
+        const res = await this.getResource(`${this._apiBase}characters/${id}?apikey=${this._apiKey}`);
+        return this._transformCharacter(res.data.results[0]);
         
+    }
+
+    _transformCharacter = (char) => {
+        let excerpt;
+        if(char.description.length > 150){
+            excerpt = char.description.slice(0,150) + '...';
+        } else if (!char.description) {
+            excerpt = 'No data available 💔';
+        } else {
+            excerpt = char.description;
+        }
+        return {
+            name: char.name,
+            description: excerpt,
+            thumbnail: char.thumbnail.path + '.' + char.thumbnail.extension,
+            homepage: char.urls[0].url,
+            wiki: char.urls[1].url
+        }
     }
 }
 
