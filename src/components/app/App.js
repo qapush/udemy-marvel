@@ -4,6 +4,7 @@ import AppHeader from "../appHeader/AppHeader";
 import RandomChar from "../randomChar/RandomChar";
 import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
+import ComicsList from '../comicsList/ComicsList';
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 import decoration from "../../resources/img/vision.png";
@@ -20,7 +21,7 @@ const App = () => {
     <div className="app">
       <AppHeader />
       <main>
-        <ErrorBoundary>
+        {/* <ErrorBoundary>
           {showRandom ? <RandomChar /> : null}
           <button onClick={() => setShowRandom(showRandom => !showRandom)}>toggle random</button>
         </ErrorBoundary>
@@ -32,7 +33,13 @@ const App = () => {
             <CharInfo charId={selectedChar} />
           </ErrorBoundary>
         </div>
-        <img className="bg-decoration" src={decoration} alt="vision" />
+        <img className="bg-decoration" src={decoration} alt="vision" /> */}
+
+        {/* COMICS LIST */}
+
+        <ErrorBoundary>
+          <ComicsList/>
+        </ErrorBoundary>
       </main>
     </div>
   );
