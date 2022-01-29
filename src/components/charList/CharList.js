@@ -26,6 +26,7 @@ const CharList = (props) => {
     }
 
     const onCharListLoaded = (newCharList) => {
+
         let ended = false;
         if (newCharList.length < 9) {
             ended = true;
@@ -61,7 +62,8 @@ const CharList = (props) => {
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'unset'};
             }
-            
+
+        
             return (
                 <li 
                     className="char__item"
@@ -95,7 +97,6 @@ const CharList = (props) => {
 
     const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading && !newItemLoading ? <Spinner/> : null;
-
 
     return (
         <div className="char__list">
